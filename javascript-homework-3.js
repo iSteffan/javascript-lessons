@@ -117,19 +117,62 @@
 // const b = addOverNum(50, 15, 27);
 // console.log(b);
 
-function findMatches(...args) {
-  const a = [...args[0]];
-  console.log(a);
-  const matches = []; // Don't change this line
-  for (let i = 1; i <= args.length - 1; i += 1) {
-    if (a.includes(args[i])) {
-      matches.push(args[i]);
+// function findMatches(...args) {
+//   const a = [...args[0]];
+//   console.log(a);
+//   const matches = []; // Don't change this line
+//   for (let i = 1; i <= args.length - 1; i += 1) {
+//     if (a.includes(args[i])) {
+//       matches.push(args[i]);
+//     }
+//   }
+
+//   // Change code above this line
+//   return matches;
+// }
+
+// const b = findMatches([1, 2, 3, 4, 5], 1, 8, 2, 7);
+// console.log(b);
+
+const basket = {
+  products: [],
+  getProducts() {
+    return this.products;
+  },
+  addProducts(item) {
+    const { products } = this;
+    for (const product of products) {
+      if (product.name === item.name) {
+        product.quantity += 1;
+        return;
+      }
     }
-  }
-
-  // Change code above this line
-  return matches;
-}
-
-const b = findMatches([1, 2, 3, 4, 5], 1, 8, 2, 7);
-console.log(b);
+    const newProduct = {
+      ...item,
+      quantity: 1,
+    };
+    return products.push(newProduct);
+  },
+  removeProducts(item) {
+    const { products } = this;
+    for (let i = 0; i < products.length; i += 1) {
+      const { name } = products[i];
+      if (name === item) {
+        products.splice(i, 1);
+        console.log(`${name} removed`);
+      }
+    }
+  },
+  getTotalPrice() {
+    let total = 0;
+    const { products } = this;
+    for (const { price, quantity } of products) {
+      total += price * quantity;
+    }
+    console.log('Total price: ', total);
+    return total;
+  },
+  clearBasket() {
+    return (this.products = []);
+  },
+};
