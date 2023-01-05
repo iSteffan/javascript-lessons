@@ -31,8 +31,6 @@
 // //   values += apartment[key]
 // }
 
-
-
 // const products = [
 //   { name: "Radar", price: 1300, quantity: 4 },
 //   { name: "Scanner", price: 2700, quantity: 3 },
@@ -53,27 +51,85 @@
 //   // Change code above this line
 // }
 
+// const products = [
+//   { name: "Radar", price: 1300, quantity: 4 },
+//   { name: "Scanner", price: 2700, quantity: 3 },
+//   { name: "Droid", price: 400, quantity: 7 },
+//   { name: "Grip", price: 1200, quantity: 9 },
+// ];
 
-const products = [
-  { name: "Radar", price: 1300, quantity: 4 },
-  { name: "Scanner", price: 2700, quantity: 3 },
-  { name: "Droid", price: 400, quantity: 7 },
-  { name: "Grip", price: 1200, quantity: 9 },
-];
+// function calculateTotalPrice(productName) {
+//   // Change code below this line
+//   let totalPrice = 0;
+// for (let product of products) {
+//   if (product.name === productName) {
+//     totalPrice = product.price * product.quantity
+//   }
 
-function calculateTotalPrice(productName) {
-  // Change code below this line
-  let totalPrice = 0;
-for (let product of products) {
-  if (product.name === productName) {
-    totalPrice = product.price * product.quantity
+// }
+
+// return totalPrice;
+//   // Change code above this line
+// }
+
+// const a = calculateTotalPrice("Radar")
+// console.log(a)
+
+// function makeTask(data) {
+//   const completed = false;
+//   const category = 'General';
+//   const priority = 'Normal';
+//   // Change code below this line
+//   const a = { category, priority, ...data, completed };
+//   console.log(a);
+//   return a;
+//   // Change code above this line
+// }
+// const b = makeTask({ category: 'Homemade', priority: 'Low', text: 'Take out the trash' });
+// console.log(b);
+
+// function add(...args) {
+//   // Change code above this line
+//   const a = args;
+//   let total = 0;
+//   console.log(a);
+//   for (let i = 0; i <= args.length - 1; i += 1) total += args[i];
+//   return total;
+// }
+// const b = add(12, 4, 11, 48);
+// console.log(b);
+
+// Change code below this line
+// function addOverNum(...args) {
+//   let total = 0;
+//   console.log(args);
+//   for (let i = 0; i <= args.length - 1; i += 1) {
+//     if (args[0] < args[i]) {
+//       total += args[i];
+//     }
+//   }
+//   // for (const arg of args) {
+//   //   total += arg;
+//   // }
+//   return total;
+//   // Change code above this line
+// }
+// const b = addOverNum(50, 15, 27);
+// console.log(b);
+
+function findMatches(...args) {
+  const a = [...args[0]];
+  console.log(a);
+  const matches = []; // Don't change this line
+  for (let i = 1; i <= args.length - 1; i += 1) {
+    if (a.includes(args[i])) {
+      matches.push(args[i]);
+    }
   }
-  
-}
 
-return totalPrice;
   // Change code above this line
+  return matches;
 }
 
-const a = calculateTotalPrice("Radar")
-console.log(a)
+const b = findMatches([1, 2, 3, 4, 5], 1, 8, 2, 7);
+console.log(b);
