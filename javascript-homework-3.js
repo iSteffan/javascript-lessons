@@ -134,45 +134,53 @@
 // const b = findMatches([1, 2, 3, 4, 5], 1, 8, 2, 7);
 // console.log(b);
 
-const basket = {
-  products: [],
-  getProducts() {
-    return this.products;
+const atTheOldToad = {
+  potions: [
+    { name: 'Speed potion', price: 460 },
+    { name: 'Dragon breath', price: 780 },
+    { name: 'Stone skin', price: 520 },
+  ],
+  getPotions() {
+    return this.potions;
   },
-  addProducts(item) {
-    const { products } = this;
-    for (const product of products) {
-      if (product.name === item.name) {
-        product.quantity += 1;
-        return;
+  addPotion(newPotion) {
+    const { potions } = atTheOldToad;
+    for (const potion of potions) {
+      if (potion.name === newPotion.name) {
+        return `Error! Potion ${newPotion.name} is already in your inventory!`;
       }
     }
-    const newProduct = {
-      ...item,
-      quantity: 1,
-    };
-    return products.push(newProduct);
+    //const addPortion = {
+    //  ...potions,
+    // ...newPotion,
+    console.log(potions.push({ name: 'Invisibility', price: 620 }));
+    return potions.push(newPotion);
+    //return addPortion;
   },
-  removeProducts(item) {
-    const { products } = this;
-    for (let i = 0; i < products.length; i += 1) {
-      const { name } = products[i];
-      if (name === item) {
-        products.splice(i, 1);
-        console.log(`${name} removed`);
-      }
+  removePotion(potionName) {
+    const potionIndex = this.potions.indexOf(potionName);
+
+    if (potionIndex === -1) {
+      return `Potion ${potionName} is not in inventory!`;
     }
+
+    this.potions.splice(potionIndex, 1);
   },
-  getTotalPrice() {
-    let total = 0;
-    const { products } = this;
-    for (const { price, quantity } of products) {
-      total += price * quantity;
+  updatePotionName(oldName, newName) {
+    const potionIndex = this.potions.indexOf(oldName);
+
+    if (potionIndex === -1) {
+      return `Potion ${oldName} is not in inventory!`;
     }
-    console.log('Total price: ', total);
-    return total;
+
+    this.potions.splice(potionIndex, 1, newName);
   },
-  clearBasket() {
-    return (this.products = []);
-  },
+  // Change code above this line
 };
+
+// const a = atTheOldToad.addPotion({ name: 'Stone skin', price: 240 });
+// console.log(a);
+const b = atTheOldToad.addPotion({ name: 'Invisibility', price: 620 });
+console.log(b);
+const c = atTheOldToad.removePotion('Speed potion');
+console.log(c);
