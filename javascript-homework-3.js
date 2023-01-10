@@ -144,43 +144,43 @@ const atTheOldToad = {
     return this.potions;
   },
   addPotion(newPotion) {
-    const { potions } = atTheOldToad;
-    for (const potion of potions) {
+    for (const potion of this.potions) {
       if (potion.name === newPotion.name) {
         return `Error! Potion ${newPotion.name} is already in your inventory!`;
       }
     }
-    //const addPortion = {
-    //  ...potions,
-    // ...newPotion,
-    console.log(potions.push({ name: 'Invisibility', price: 620 }));
-    return potions.push(newPotion);
-    //return addPortion;
+    this.potions.push(newPotion);
   },
   removePotion(potionName) {
-    const potionIndex = this.potions.indexOf(potionName);
-
-    if (potionIndex === -1) {
-      return `Potion ${potionName} is not in inventory!`;
+    for (let i = 0; i < this.potions.length; i += 1) {
+      const { name } = this.potions[i];
+      if (name === potionName) {
+        this.potions.splice(i, 1);
+        console.log(`${name} removed`);
+      }
     }
-
-    this.potions.splice(potionIndex, 1);
   },
+  //   updatePotionName(oldName, newName) {
+  //     const { potions } = this;
+  //     for (let i = 0; i < potions.length; i += 1) {
+  //       const { name } = this.potions[i];
+  //       console.log();
+  //       if (name === oldName) {
+  //         return (this.potions[i].name = newName);
+  //       }
+  //     }
+  //   },
+  // };
+
   updatePotionName(oldName, newName) {
-    const potionIndex = this.potions.indexOf(oldName);
-
-    if (potionIndex === -1) {
-      return `Potion ${oldName} is not in inventory!`;
+    for (let i = 0; i < this.potions.length; i += 1) {
+      if (oldName === this.potions[i].name) {
+        return (this.potions[i].name = newName);
+      }
     }
-
-    this.potions.splice(potionIndex, 1, newName);
+    return `Potion ${oldName} is not in inventory!`;
   },
-  // Change code above this line
 };
 
-// const a = atTheOldToad.addPotion({ name: 'Stone skin', price: 240 });
-// console.log(a);
-const b = atTheOldToad.addPotion({ name: 'Invisibility', price: 620 });
-console.log(b);
-const c = atTheOldToad.removePotion('Speed potion');
-console.log(c);
+const updateP = atTheOldToad.updatePotionName('Stone skin', 'Invulnerability potion');
+console.log(updateP);
